@@ -13,11 +13,10 @@ dependencies:
     - sudo bash -c "cd /usr/local/bin && curl -fsSLo boot https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh && chmod 755 boot"
   override:
     - pip install -r requirements.txt
-    - cd web; boot configure
-    - cd web; boot prod
+    - cd web; boot production
 
 deployment:
   master:
     branch: master
     commands:
-      - cd web; netlify deploy
+      - cd web/target; netlify deploy
