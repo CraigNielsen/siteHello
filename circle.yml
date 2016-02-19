@@ -19,4 +19,4 @@ deployment:
   master:
     branch: master
     commands:
-      - cd web/target; netlify deploy
+      - cd web/target; netlify deploy -t 6b72c70d01ccf576e64b540f2f3d9a133fba02899915fbb083d69086c2025381
