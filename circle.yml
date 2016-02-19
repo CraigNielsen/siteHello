@@ -20,7 +20,7 @@ dependencies:
     - cd web; boot prod
 
 deployment:
-  staging:
+  master:
     branch: master
     commands:
       - cd web; netlify deploy
