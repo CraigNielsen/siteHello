@@ -1,0 +1,25 @@
+machine:
+  environment:
+    BOOT_JVM_OPTIONS: -Xmx2g -client -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Xverify:none
+  node:
+    version: 0.10.33
+  python:
+    version: 2.7.9
+
+dependencies:
+  pre:
+    - sudo apt-get update; sudo apt-get -y install $(cat Aptfile)
+    - if [ ! -e ~/nvm/v0.10.33/bin/firebase ]; then npm install netlify-cli -g; else echo "Not installing netlify-cli because it seems to be cached."; fi;
+    - sudo bash -c "cd /usr/local/bin && curl -fsSLo boot https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh && chmod 755 boot"
+  override:
+    - pip install -r requirements.txt
+    - cd web; npm install
+    - cd web; bower install
+    - cd web; boot configure
+    - cd web; boot prod
+
+deployment:
+  staging:
+    branch: master
+    commands:
+      - cd web; netlify deploy
