@@ -12,10 +12,11 @@ dependencies:
     - if [ ! -e ~/nvm/v0.10.33/bin/firebase ]; then npm install netlify-cli -g; else echo "Not installing netlify-cli because it seems to be cached."; fi;
     - sudo bash -c "cd /usr/local/bin && curl -fsSLo boot https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh && chmod 755 boot"
   override:
+    - cd web; pwd; echo pwd
     - pip install -r requirements.txt
     - cd web; boot build
     - cd web; mv ./.netlify ./target
-    - cd web; pwd; echo pwd
+
 
 deployment:
   master:
