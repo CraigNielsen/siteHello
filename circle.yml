@@ -13,7 +13,6 @@ dependencies:
     - sudo bash -c "cd /usr/local/bin && curl -fsSLo boot https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh && chmod 755 boot"
   override:
     - pip install -r requirements.txt
-    - pyenv virtualenv 2.7.9 venv-2.7.9
     - cd web; npm install
     - cd web; bower install
     - cd web; boot configure
