@@ -14,17 +14,17 @@
  '[pandeiro.boot-http    :refer [serve]])
 
 (deftask build []
-  (comp (speak)
-        
-        (cljs)
-        ))
+  (cljs)
+)
 
 (deftask run []
   (comp (serve)
         (watch)
         (cljs-repl)
         (reload)
-        (build)))
+        (build)
+  )
+)
 
 (deftask production []
   (task-options! cljs {:optimizations :advanced})
@@ -40,5 +40,3 @@
   []
   (comp (development)
         (run)))
-
-
